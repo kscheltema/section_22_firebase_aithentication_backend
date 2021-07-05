@@ -37,7 +37,11 @@ fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDxlAg
   } else {
     //...if it fails
     return res.json().then(data => {
-      //show an error modal 6 min password length for firebase
+     let errorMessage = 'Authentication failed!';
+     if (data && data.error && data.error.message) {
+errorMessage = data.error.message;
+     }
+      alert(errorMessage);
     });
   } 
 });
