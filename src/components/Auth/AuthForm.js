@@ -6,6 +6,7 @@ const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); 
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -18,6 +19,7 @@ const enteredEmail = emailInputRef.current.value;
 const enteredPassword = passwordInputRef.current.value;
 
 //good space to link password & email validation
+setIsLoading(true);
 
 if (isLogin) {
 } else {
@@ -32,6 +34,7 @@ fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDxlAg
     'Content-Type': 'application/json'
   }
 }).then(res => { //then handles responses, catch errors
+  setIsLoading(false);
   if(res.ok) {
     //..success response
   } else {
@@ -61,7 +64,8 @@ errorMessage = data.error.message;
           <input type='password' id='password' required ref={passwordInputRef}/>
         </div>
         <div className={classes.actions}>
-          <button>{isLogin ? 'Login' : 'Create Account'}</button>
+         {!isLoading && <button>{isLogin ? 'Login' : 'Create Account'}</button>}
+         {isLoading && <p>Sending request....</p>}
           <button
             type='button'
             className={classes.toggle}
