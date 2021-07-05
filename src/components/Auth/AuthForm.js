@@ -21,7 +21,8 @@ const enteredPassword = passwordInputRef.current.value;
 
 if (isLogin) {
 } else {
-fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]', {
+fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=
+AIzaSyDxlAgL_5YyVVj0baqO9O9t2Dz4D-norpM', {
   method: 'POST',
   body: JSON.stringify({
     email:enteredEmail,
