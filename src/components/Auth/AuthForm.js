@@ -21,7 +21,9 @@ const enteredPassword = passwordInputRef.current.value;
 
 if (isLogin) {
 }else {
-fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyDxlAgL_5YyVVj0baqO9O9t2Dz4D-norpM');
+fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyDxlAgL_5YyVVj0baqO9O9t2Dz4D-norpM', {
+  method: 'POST'
+});
 }
 };
 
