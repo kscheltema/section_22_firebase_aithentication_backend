@@ -12,7 +12,7 @@ const AuthForm = () => {
   };
 
 const submitHandler = (event) => {
-event.preventDefault();
+event.preventDefault(); //automatic request prevented
 
 const enteredEmail = emailInputRef.current.value;
 const enteredPassword = passwordInputRef.current.value;
@@ -20,8 +20,8 @@ const enteredPassword = passwordInputRef.current.value;
 //good space to link password & email validation
 
 if (isLogin) {
-}else {
-fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyDxlAgL_5YyVVj0baqO9O9t2Dz4D-norpM', {
+} else {
+fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]', {
   method: 'POST',
   body: JSON.stringify({
     email:enteredEmail,
@@ -37,7 +37,7 @@ fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?
   } else {
     //...if it fails
     return res.json().then(data => {
-      //show an error modal
+      //show an error modal 6 min password length for firebase
     });
   } 
 });
@@ -47,7 +47,7 @@ fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?
   return (
     <section className={classes.auth}>
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
-      <form>
+      <form onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor='email'>Your Email</label>
           <input type='email' id='email' required ref={emailInputRef}/>
