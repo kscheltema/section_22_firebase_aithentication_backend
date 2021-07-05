@@ -31,6 +31,15 @@ fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?
   headers: {
     'Content-Type': 'application/json'
   }
+}).then(res => {
+  if(res.ok) {
+    //..success response
+  } else {
+    //...if it fails
+    return res.json().then(data => {
+      //show an error modal
+    });
+  } 
 });
 }
 };
