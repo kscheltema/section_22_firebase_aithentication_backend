@@ -27,7 +27,10 @@ fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?
     email:enteredEmail,
     password: enteredPassword, 
     returnSecureToken: true
-  })
+  }),
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
 }
 };
