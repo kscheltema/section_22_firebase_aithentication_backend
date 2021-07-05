@@ -20,10 +20,15 @@ const enteredPassword = passwordInputRef.current.value;
 
 //good space to link password & email validation
 setIsLoading(true);
+let url;
 
 if (isLogin) {
+  url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDxlAgL_5YyVVj0baqO9O9t2Dz4D-norpM';
 } else {
-fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDxlAgL_5YyVVj0baqO9O9t2Dz4D-norpM', {
+  url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDxlAgL_5YyVVj0baqO9O9t2Dz4D-norpM'; 
+}
+fetch(url,
+  {
   method: 'POST',
   body: JSON.stringify({ //stringify creates data of attached type aka JSON
     email:enteredEmail,
@@ -48,7 +53,6 @@ errorMessage = data.error.message;
     });
   } 
 });
-}
 };
 
   return (
