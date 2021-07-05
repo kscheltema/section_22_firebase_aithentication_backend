@@ -23,7 +23,7 @@ if (isLogin) {
 } else {
 fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDxlAgL_5YyVVj0baqO9O9t2Dz4D-norpM', {
   method: 'POST',
-  body: JSON.stringify({
+  body: JSON.stringify({ //stringify creates data of attached type aka JSON
     email:enteredEmail,
     password: enteredPassword, 
     returnSecureToken: true
@@ -31,7 +31,7 @@ fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDxlAg
   headers: {
     'Content-Type': 'application/json'
   }
-}).then(res => {
+}).then(res => { //then handles responses, catch errors
   if(res.ok) {
     //..success response
   } else {
