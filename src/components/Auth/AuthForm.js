@@ -55,7 +55,8 @@ fetch(url,{
   } 
 })
 .then(data => {
- authCTX.login(data.idToken);
+const expirationTime = new Date(new Date().getTime() + (+data.expiresIn * 1000));
+authCTX.login(data.idToken, expirationTime.toISOString());
 history.replace('/');
 })
 .catch(err => {
