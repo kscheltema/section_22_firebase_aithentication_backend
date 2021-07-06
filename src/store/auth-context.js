@@ -12,11 +12,13 @@ const [token, setToken] = useState(null);
 const userIsLoggedIn = !!token; //converts a truthy or falsy value into Boolean
 
 const loginHandler = (token) => {
+  localStorage.setItem('token', token);
   setToken(token);
 };
 
 const loggedOutHandler = () => {
   setToken(null);
+  localStorage.removeItem('token');
 };
 
 const contextValue = {
