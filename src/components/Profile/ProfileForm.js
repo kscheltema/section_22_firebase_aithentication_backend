@@ -1,10 +1,12 @@
 import { useRef, useContext } from 'react';
+import { useHistory } from 'react-router';
 import AuthContext from '../../store/auth-context';
 import classes from './ProfileForm.module.css';
 
 const ProfileForm = () => {
+  const history = useHistory();
   const newPasswordInputRef = useRef();
-const authCTX = useContext(AuthContext);
+  const authCTX = useContext(AuthContext);
 
   const submitHandler = event => {
     event.preventDefault();
@@ -21,7 +23,7 @@ const authCTX = useContext(AuthContext);
       'Content-Type': 'application/json'
     }
   }).then(res => {
-
+history.replace('/');
   });
   //need error handling here for firebase side validation (min length)
   //swatcha is assuming no error handling needed and succeeds for time
