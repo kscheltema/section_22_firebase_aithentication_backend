@@ -9,15 +9,9 @@ function App() {
   return (
     <Layout>
       <Switch>
-        <Route path='/' exact>
-          <HomePage />
-        </Route>
-        <Route path='/auth'>
-          <AuthPage />
-        </Route>
-        <Route path='/profile'>
-          <UserProfile />
-        </Route>
+        <Route path='/' exact component={HomePage} />
+        <Route path='/auth' component={AuthPage} />
+        <Route path='/profile' component={UserProfile} />
       </Switch>
     </Layout>
   );
