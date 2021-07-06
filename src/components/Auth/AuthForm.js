@@ -53,8 +53,8 @@ fetch(url,{
   } 
 })
 .then(data => {
-//  authCTX.login(data.idToken);
-console.log(data);
+ authCTX.login(data.idToken);
+// console.log(data);
 })
 .catch(err => {
       alert(err.message);

@@ -11,7 +11,7 @@ export const AuthContextProvider = (props) => {
 const [token, setToken] = useState(null);
 const userIsLoggedIn = !!token; //converts a truthy or falsy value into Boolean
 
-const loginHandler = () => {
+const loginHandler = (token) => {
   setToken(token);
 };
 
