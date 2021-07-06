@@ -1,10 +1,11 @@
-import { useState, useRef } from 'react';
-
+import { useState, useRef, useContext } from 'react';
+import AuthContext from '../../store/auth-context';
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const authCTX = useContext(AuthContext);
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false); 
 
@@ -27,34 +28,33 @@ if (isLogin) {
 } else {
   url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDxlAgL_5YyVVj0baqO9O9t2Dz4D-norpM'; 
 }
-fetch(url,
-  {
+fetch(url,{
   method: 'POST',
   body: JSON.stringify({ //stringify creates data of attached type aka JSON
     email:enteredEmail,
     password: enteredPassword, 
-    returnSecureToken: true
+    returnSecureToken: true,
   }),
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
 }).then(res => { //then handles responses, catch errors
   setIsLoading(false);
   if(res.ok) {
     return res.json();
-  } else {
-    //...if it fails
+  } else { //...if it fails
     return res.json().then(data => {
      let errorMessage = 'Authentication failed!';
 //      if (data && data.error && data.error.message) {
 // errorMessage = data.error.message;
 //      }
-      throw new Error(errorMessage)
+      throw new Error(errorMessage);
     });
   } 
 })
 .then(data => {
-  console.log(data);
+//  authCTX.login(data.idToken);
+console.log(data);
 })
 .catch(err => {
       alert(err.message);
