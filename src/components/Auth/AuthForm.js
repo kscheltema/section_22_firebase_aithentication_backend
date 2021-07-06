@@ -41,17 +41,23 @@ fetch(url,
 }).then(res => { //then handles responses, catch errors
   setIsLoading(false);
   if(res.ok) {
-    //..success response
+    return res.json();
   } else {
     //...if it fails
     return res.json().then(data => {
      let errorMessage = 'Authentication failed!';
-     if (data && data.error && data.error.message) {
-errorMessage = data.error.message;
-     }
-      alert(errorMessage);
+//      if (data && data.error && data.error.message) {
+// errorMessage = data.error.message;
+//      }
+      throw new Error(errorMessage)
     });
   } 
+})
+.then(data => {
+  console.log(data);
+})
+.catch(err => {
+      alert(err.message);
 });
 };
 
